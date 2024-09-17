@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receitas CRUD</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Receitas</h1>
+
+    <div>
+        <h2>Criar Receita</h2>
+        <form id="createForm">
+            <input type="text" id="nome" placeholder="Nome da Receita" required>
+            <input type="number" id="tempoPreparo" placeholder="Tempo de Preparo" required>
+            <input type="number" step="0.01" id="custoAproximado" placeholder="Custo Aproximado" required>
+            <input type="text" id="ingredientes" placeholder="Ingredientes (separados por vírgula)" required>
+            <button type="submit">Criar Receita</button>
+        </form>
+    </div>
+
+    <div>
+        <h2>Lista de Receitas</h2>
+        <ul id="recipeList"></ul>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

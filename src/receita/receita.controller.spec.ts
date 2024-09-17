@@ -1,18 +1,34 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { ReceitaController } from './receita.controller';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { ReceitaService } from './receita.service';
+import { CreateReceitaDto } from './dto/create-receita.dto';
+import { UpdateReceitaDto } from './dto/update-receita.dto';
 
-describe('ReceitaController', () => {
-  let controller: ReceitaController;
+@Controller('receita')
+export class ReceitaController {
+  constructor(private readonly receitaService: ReceitaService) {}
 
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      controllers: [ReceitaController],
-    }).compile();
+  @Get()
+  findAll() {
+    return this.receitaService.findAll();
+  }
 
-    controller = module.get<ReceitaController>(ReceitaController);
-  });
+  @Get(':id')
+  findOne(@Param('id') id: number) {
+    return this.receitaService.findOne(id);
+  }
 
-  it('should be defined', () => {
-    expect(controller).toBeDefined();
-  });
-});
+  @Post()
+  create(@Body() createReceitaDto: CreateReceitaDto) {
+    return this.receitaService.create(createReceitaDto);
+  }
+
+  @Put(':id')
+  update(@Param('id') id: number, @Body() updateReceitaDto: UpdateReceitaDto) {
+    return this.receitaService.update(id, updateReceitaDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: number) {
+    return this.receitaService.remove(id);
+  }
+}
